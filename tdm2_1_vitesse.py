@@ -46,9 +46,9 @@ print("u_ecartype=", u_ecarttype)
 print("v_ecartype=", v_ecarttype)
 print("w_ecartype=", w_ecarttype)
 
-u_fluctuations = [u[i] - u_moy for i in range(len(u))]
-v_fluctuations = [v[i] - v_moy for i in range(len(v))]
-w_fluctuations = [w[i] - w_moy for i in range(len(w))]
+#u_fluctuations = [u[i] - u_moy for i in range(len(u))]
+#v_fluctuations = [v[i] - v_moy for i in range(len(v))]
+#w_fluctuations = [w[i] - w_moy for i in range(len(w))]
 
 #Calcul du coeff d'auto-correlation
 def autocorr(u_fluctuations,time):
@@ -64,11 +64,15 @@ def autocorr(u_fluctuations,time):
     tau=time[0 : N]
     return tau, C
 
+
 #Calcul de l'échelle intégrale
 def echelle_int(tau, C):
+    N=len(tau)
     EI = 0
-    EI = np.sum(C) * (tau[1] - tau[0])
+    for i in range(N-1):
+        EI += C[i]*(tau[i+1]-tau[i])
     return EI
+
 
 ## Auto-correlation et échelle intégrale du signal de vitesse
 
@@ -76,13 +80,22 @@ plt.figure(0)
 plt.plot(temps, u)
 plt.xlabel("Temps(s)")
 plt.ylabel("Vitesse U(cm/s)")
+plt.legend(["Vitesse U"])
 
-tau_vitesse_u, autocorr_vitesse_u = autocorr(u_fluctuations,temps)
+tau_vitesse_u, autocorr_vitesse_u = autocorr([u[i] - u_moy for i in range(len(u))],temps)
 echelle_int_vitesse_u = echelle_int(tau_vitesse_u, autocorr_vitesse_u)
 print("Echelle intégrale de la vitesse u =", echelle_int_vitesse_u)
 
+tau_vitesse_v, autocorr_vitesse_v = autocorr([v[i] - v_moy for i in range(len(v))],temps)
+echelle_int_vitesse_v = echelle_int(tau_vitesse_v, autocorr_vitesse_v)
+print("Echelle intégrale de la vitesse v =", echelle_int_vitesse_v)
+
+tau_vitesse_w, autocorr_vitesse_w = autocorr([w[i] - w_moy for i in range(len(w))],temps)
+echelle_int_vitesse_w = echelle_int(tau_vitesse_w, autocorr_vitesse_w)
+print("Echelle intégrale de la vitesse w =", echelle_int_vitesse_w)
+
 plt.figure(1)
-plt.plot(tau_vitesse_u[:-1], autocorr_vitesse_u[:-1])
+plt.plot(tau_vitesse_u, autocorr_vitesse_u)
 plt.xlabel('Temps (s)')
 plt.ylabel('Auto-correlation')
 plt.show()

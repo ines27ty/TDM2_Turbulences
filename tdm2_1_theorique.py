@@ -171,3 +171,4 @@ plt.ylabel('Auto-correlation')
 plt.legend(['Langevin', 'Langevin d\'une autre moyenne'])
 plt.show()
 
+## Influence du temps caractéristique dans le processus de Langevin
