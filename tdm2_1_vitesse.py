@@ -50,7 +50,6 @@ u_fluctuations = [u[i] - u_moy for i in range(len(u))]
 v_fluctuations = [v[i] - v_moy for i in range(len(v))]
 w_fluctuations = [w[i] - w_moy for i in range(len(w))]
 
-
 #Calcul du coeff d'auto-correlation
 def autocorr(u_fluctuations,time):
     Ntot = len(u_fluctuations)  
@@ -61,10 +60,9 @@ def autocorr(u_fluctuations,time):
         for i in range(Ntot-j):
             C[j] += u_fluctuations[i] * u_fluctuations[i+j]
         C[j] /= (Ntot-j)
-    C[j] /= var
+    C /= var
     tau=time[0 : N]
     return tau, C
-
 
 #Calcul de l'échelle intégrale
 def echelle_int(tau, C):

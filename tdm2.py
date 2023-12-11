@@ -155,8 +155,15 @@ u_ecarttype_densite = ecart_type(repartition, proba)
 print("u_moy_proba = ", u_moy_densite)
 print("u_ecarttype_proba = ", ecart_type(repartition, proba))
 
+#Comparer la répartition de probabilité avec la loi normale
+def loi_normale(x, mean, std):
+    return 1/(std*np.sqrt(2*np.pi))*np.exp(-0.5*(x-mean)**2/std**2)
+
 plt.figure(6)
 plt.plot(repartition, proba, 'r', label='u '+ r'$(cm.s^{-1}$)')
+plt.xlabel('vitesse '+ r'$(cm.s^{-1}$)')
+plt.ylabel('pdf')
+plt.legend()
 
 #Dérivée temporelle du signal de vitesse
 def derivation(u,temps) : 
