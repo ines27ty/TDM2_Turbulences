@@ -59,8 +59,10 @@ plt.plot(tau_bruit_blanc, autocorr_bruitblanc, zorder=1)
 plt.xlabel('Temps (s)')
 plt.ylabel('Auto-correlation')
 plt.legend(['Bruit blanc intensité double', 'Bruit blanc '])
+
+
 #Sinusoide
-f0=0.2
+f0=0.1
 sinusoide = np.sin(2*np.pi*time*f0)
 
 plt.figure(3)
@@ -130,6 +132,8 @@ print("Echelle intégrale de langevin =", echelle_int_langevin)
 temps_langevin2 = Y[:,0]
 signal_langevin2 = Y[:,1]*2  
 tau_langevin2, autocorr_langevin2 = autocorr(signal_langevin2,temps_langevin2)
+echelle_int_langevin2 = echelle_int(tau_langevin2, autocorr_langevin2)
+print("Echelle intégrale de langevin 2 =", echelle_int_langevin2)
 
 plt.figure(6)
 plt.plot(temps_langevin, signal_langevin,linewidth=2)
@@ -149,6 +153,9 @@ plt.legend(['Langevin', 'Langevin intensité double'])
 temps_langevin3 = Y[:,0]
 signal_langevin3 = Y[:,1]+3
 tau_langevin3, autocorr_langevin3 = autocorr(signal_langevin3,temps_langevin3)
+echelle_int_langevin3 = echelle_int(tau_langevin3, autocorr_langevin3)
+print("Echelle intégrale de langevin 3=", echelle_int_langevin)
+
 
 plt.figure(8)
 plt.plot(temps_langevin, signal_langevin,linewidth=2)
