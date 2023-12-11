@@ -156,7 +156,6 @@ tau_langevin3, autocorr_langevin3 = autocorr(signal_langevin3,temps_langevin3)
 echelle_int_langevin3 = echelle_int(tau_langevin3, autocorr_langevin3)
 print("Echelle intégrale de langevin 3=", echelle_int_langevin)
 
-
 plt.figure(8)
 plt.plot(temps_langevin, signal_langevin,linewidth=2)
 plt.plot(temps_langevin3, signal_langevin3)
