@@ -127,22 +127,12 @@ def pdf_speed(u,precision=0.01):
     proba = pdf / (np.sum(pdf)) 
     return proba
 
-repartition = repartition_speed(u)
-proba = pdf_speed(u)
-delta_x= repartition[1]-repartition[0]
-
-density_prob = np.sum(proba)*(delta_x)
-print("densité de probabilité = ", density_prob)
-print("probabilite", np.sum(proba))
-
 #calculer la moyenne et la variance à partir de la densité de probabilité
 def moyenne(repartition, proba):
     moyenne = 0
     for i in range(len(repartition)):
         moyenne += repartition[i]*proba[i]
     return moyenne
-
-u_moy_densite = moyenne(repartition, proba)
 
 def ecart_type(repartition, proba):
     u_moy_densite = moyenne(repartition, proba)
@@ -151,16 +141,49 @@ def ecart_type(repartition, proba):
         variance += (repartition[i]-u_moy_densite)**2*proba[i]
     return np.sqrt(variance)
 
-u_ecarttype_densite = ecart_type(repartition, proba)
+repartition_u = repartition_speed(u)
+#proba_u = pdf_speed(u)
+delta_x_u= repartition_speed(u)[1]-repartition_speed(u)[0]
+print("densité de probabilité de u = ", np.sum(pdf_speed(u))*(delta_x_u))
+print("probabilite", np.sum(pdf_speed(u)))
+
+u_moy_densite = moyenne(repartition_speed(u),  pdf_speed(u))
+u_ecarttype_densite = ecart_type(repartition_speed(u),  pdf_speed(u))
 print("u_moy_proba = ", u_moy_densite)
-print("u_ecarttype_proba = ", ecart_type(repartition, proba))
+print("u_ecarttype_proba = ", ecart_type(repartition_speed(u),  pdf_speed(u)))
+
+
+repartition_v = repartition_speed(v)
+#proba_u = pdf_speed(u)
+delta_x_v= repartition_speed(v)[1]-repartition_speed(v)[0]
+print("densité de probabilité de v = ", np.sum(pdf_speed(v))*(delta_x_v))
+print("probabilite", np.sum(pdf_speed(v)))
+
+v_moy_densite = moyenne(repartition_speed(v),  pdf_speed(v))
+v_ecarttype_densite = ecart_type(repartition_speed(v),  pdf_speed(v))
+print("v_moy_proba = ", v_moy_densite)
+print("v_ecarttype_proba = ", ecart_type(repartition_speed(v),  pdf_speed(v)))
+
+
+
+repartition_w = repartition_speed(w)
+#proba_u = pdf_speed(u)
+delta_x_w= repartition_speed(w)[1]-repartition_speed(w)[0]
+print("densité de probabilité de w = ", np.sum(pdf_speed(w))*(delta_x_w))
+print("probabilite", np.sum(pdf_speed(w)))
+
+w_moy_densite = moyenne(repartition_speed(w),  pdf_speed(w))
+w_ecarttype_densite = ecart_type(repartition_speed(w),  pdf_speed(w))
+print("w_moy_proba = ", w_moy_densite)
+print("w_ecarttype_proba = ", ecart_type(repartition_speed(w),  pdf_speed(w)))
+
 
 #Comparer la répartition de probabilité avec la loi normale
 def loi_normale(x, mean, std):
     return 1/(std*np.sqrt(2*np.pi))*np.exp(-0.5*(x-mean)**2/std**2)
 
 plt.figure(6)
-plt.plot(repartition, proba, 'r', label='u '+ r'$(cm.s^{-1}$)')
+plt.plot(repartition_u, pdf_speed(u), 'r', label='u '+ r'$(cm.s^{-1}$)')
 plt.xlabel('vitesse '+ r'$(cm.s^{-1}$)')
 plt.ylabel('pdf')
 plt.legend()
