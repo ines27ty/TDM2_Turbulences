@@ -279,7 +279,6 @@ tau_langevin_t10000, autocorr_langevin_t10000 = autocorr(signal_langevin_t10000,
 echelle_int_langevin_t10000 = echelle_int(tau_langevin_t10000, autocorr_langevin_t10000)
 print("Echelle intégrale de langevin T=10000=", echelle_int_langevin_t10000)
 
-
 plt.figure(10)
 plt.plot(temps_langevin_t1, signal_langevin_t1)
 plt.plot(temps_langevin_t10, signal_langevin_t10)
@@ -287,8 +286,6 @@ plt.plot(temps_langevin_t100, signal_langevin_t100)
 plt.xlabel('Temps (s)')
 plt.ylabel('Amplitude')
 plt.legend(['T=1','T=10','T=100'])
-
-
 
 plt.figure(11)
 plt.plot(temps_langevin_t1, signal_langevin_t1)
