@@ -118,5 +118,5 @@ def echelle_int_long(u_fluctuations,time):
 
 print("Echelle de longueur intégrale intégrale =",echelle_int_long(u_fluctuations,temps))
 print("Echelle de longueur intégrale =",echelle_int_vitesse_u*np.linalg.norm([u_fluctuations,v_fluctuations,w_fluctuations]))
-print("Echelle de longueur intégrale u  =", echelle_int_vitesse_u * np.linalg.norm(u_fluctuations))
+print("Echelle de longueur intégrale vitesse  =", echelle_int_vitesse_u * np.linalg.norm(u_fluctuations))
 plt.show()
