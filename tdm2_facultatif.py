@@ -37,7 +37,7 @@ def densite_spec(u_fluctuations,time):
     u_fluctuations_fft = np.fft.fft(u_fluctuations)
     u_fluctuations_fft = np.fft.fftshift(u_fluctuations_fft)
     DSP = (abs(u_fluctuations_fft))**2
-    return freq, DSP
+    return freq, DSP/len(u_fluctuations)
 
 def densite_spectrale(u_fluctuations,temps,freq) :
     Ntot = len(u_fluctuations) 

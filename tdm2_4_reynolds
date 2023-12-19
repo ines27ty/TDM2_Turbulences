@@ -1,0 +1,56 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from random import *
+from math import * 
+
+# Ouvrir le fichier
+with open("signal_canal3280_48.txt", 'r') as fichier:
+    # Lire les lignes du fichier
+    lines = fichier.readlines()
+
+# Initialiser des listes vides pour stocker les données
+iteration = []
+temps = []
+u = []
+v = []
+w = []
+
+# Parcourir chaque ligne du fichier
+for line in lines:
+    line = line.strip()         # Supprimer les espaces en début et fin de ligne
+    line = line.replace('\t', ',')      # Remplacer les tabulations par des virgules
+    values = line.split(',')     # Diviser la ligne en une liste de valeurs
+    
+    # Convertir chaque valeur en float et ajouter à la liste correspondante
+    iteration.append(float(values[0]))
+    temps.append(float(values[1]))
+    u.append(float(values[2]))
+    v.append(float(values[3]))
+    w.append(float(values[4]))
+
+#Definition des fluctuations du signal de vitesse
+# Moyenne et écart-type des trois composantes du signal
+u_moy =np.mean(u)
+v_moy = np.mean(v)
+w_moy = np.mean(w)
+
+u_ecarttype= np.std(u)
+v_ecarttype= np.std(v)
+w_ecarttype= np.std(w)
+
+print("u_moy=", u_moy)
+print("v_moy=", v_moy)
+print("w_moy=", w_moy)
+
+print("u_ecartype=", u_ecarttype)
+print("v_ecartype=", v_ecarttype)
+print("w_ecartype=", w_ecarttype)
+
+u_fluctuations = [u[i] - u_moy for i in range(len(u))]
+v_fluctuations = [v[i] - v_moy for i in range(len(v))]
+w_fluctuations = [w[i] - w_moy for i in range(len(w))]
+
+#Calcul de la vitesse caractéritique
+u_prime = np.array(u_fluctuations)
+u_mean = np.sqrt(np.mean(u_prime**2)/3)
+print("u_mean=", u_mean)
