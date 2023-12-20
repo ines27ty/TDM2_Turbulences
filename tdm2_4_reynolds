@@ -51,6 +51,16 @@ v_fluctuations = [v[i] - v_moy for i in range(len(v))]
 w_fluctuations = [w[i] - w_moy for i in range(len(w))]
 
 #Calcul de la vitesse caractéritique
-u_prime = np.array(u_fluctuations)
+u_c = (np.mean(np.array(u_fluctuations)**2)) + (np.mean(np.array(v_fluctuations)**2)) + (np.mean(np.array(w_fluctuations)**2))/3
+print("u_c=", u_c)
+print("racine u_c=", np.sqrt(u_c))
+
+#Calcul de la vitesse moyenne
+u_m = (np.mean(np.array(u_moy)**2)) + (np.mean(np.array(v_moy)**2)) + (np.mean(np.array(w_moy)**2))/3
+print("u_m=", u_m)
+print("racine u_m=", np.sqrt(u_m))
+
+# ines 
+u_prime =  np.array(u_fluctuations)
 u_mean = np.sqrt(np.mean(u_prime**2)/3)
 print("u_mean=", u_mean)
