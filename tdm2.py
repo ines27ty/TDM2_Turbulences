@@ -102,16 +102,6 @@ def repartition_speed(u,precision=0.01):
     repartition = np.linspace(v_min,v_max,int((v_max-v_min)/precision))
     return repartition
 
-
-def repartition_vitesse(x,P):
-    min_x = min(x)
-    delta_x = (max(x) - min(x))/len(x)
-    for i in range(len(x)):
-        l = (x[i] - min_x)/delta_x
-        l = min(float(l), len(x)-1) + 1
-        P[l] = P[l] + 1
-    return P
-
 def pdf_speed(u,precision=0.01):
     vitesse = np.sort(u)
     n = len(vitesse)

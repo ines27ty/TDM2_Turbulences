@@ -52,6 +52,31 @@ w_fluctuations = [w[i] - w_moy for i in range(len(w))]
 
 #Calcul de la vitesse caractéritique
 u_c2 = (np.mean(np.array(u_fluctuations)**2)) + (np.mean(np.array(v_fluctuations)**2)) + (np.mean(np.array(w_fluctuations)**2))/3
-print("u_c2=", u_c2)
-print(" u_c=", np.sqrt(u_c2))
+u_c = np.sqrt(u_c2)
+print(" u_c=",u_c)
+print("u_cc=", np.sqrt(np.mean(u_ecarttype**2) + np.mean(v_ecarttype**2) + np.mean(w_ecarttype**2)/3))
 
+#Calcul de la dissipation d'energie turbulente
+lambda_ = 0.104
+nu = 0.0003
+epsilon = nu * (u_c / lambda_)**2
+print("epsilon=", epsilon)
+
+#Calcul de la production d'énergie cinétique turbulente
+L_int = 3.53
+prod_ec = u_c**3/L_int
+print("prod_ec=", prod_ec)
+
+#Calcul du nombre de Reynolds
+Re_lambda = (u_c * lambda_)/nu
+print("Re_lambda=", Re_lambda)
+
+Re_local = Re_lambda**2
+print("Re_local=", Re_local)
+
+#Echelle de Kolmogorov
+eta = (nu**3/epsilon)**(1/4)
+print("eta=", eta)
+
+tau_eta = (nu/epsilon)**(1/2)
+print("tau_eta=", tau_eta)
